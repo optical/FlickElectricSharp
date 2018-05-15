@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <Product />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+ <PropertyGroup Label="Package">
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Authors>Jared Klopper</Authors>
+    <Product>FlickElectricSharp</Product>
+    <Description>Provides access to Flicks API for current pricing and historic power usage</Description>
+    <PackageProjectUrl>https://github.com/optical/FlickElectricSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/optical/FlickElectricSharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>FlickElectric;Flick Electric Api;API;Flick API</PackageTags>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="1.0.1" />
+    <PackageReference Include="CsvHelper" Version="7.1.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+</Project>
