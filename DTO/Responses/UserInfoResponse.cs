@@ -1,5 +1,4 @@
-﻿using FlickApiExperiment.DTO.Responses;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace FlickElectricSharp.DTO.Responses {
 	[JsonObject]

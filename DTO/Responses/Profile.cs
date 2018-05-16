@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace FlickApiExperiment.DTO.Responses {
+namespace FlickElectricSharp.DTO.Responses {
 	[JsonObject]
 	public class Profile {
 
