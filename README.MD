@@ -1,4 +1,5 @@
-# FlickElectricSharp [![Build Status](https://travis-ci.org/optical/FlickElectricSharp.svg?branch=master)](https://travis-ci.org/optical/FlickElectricSharp)
+# FlickElectricSharp [![Build Status](https://travis-ci.org/optical/FlickElectricSharp.svg?branch=master)](https://travis-ci.org/optical/FlickElectricSharp) [![Build status](https://ci.appveyor.com/api/projects/status/9x0eoknwn9tywgua?svg=true)](https://ci.appveyor.com/project/optical/flickelectricsharp)
+
 A simple, unofficial .NET client for accessing current [FlickElectric]("https://flickelectric.co.nz) prices, along with historic data
 
 ## Installation
