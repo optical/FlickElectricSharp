@@ -1,0 +1,7 @@
+﻿version: '1.0.{build}'
+image: Visual Studio 2017
+before_build:
+  - cmd: dotnet --version
+  - cmd: dotnet restore FlickElectricSharp.csproj
+build_script:
+  - cmd: dotnet build FlickElectricSharp.sln
