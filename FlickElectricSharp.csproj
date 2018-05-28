@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 
     <Product />
+
+    <PackageLicenseUrl>https://github.com/optical/FlickElectricSharp/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,6 +27,8 @@
     <RepositoryUrl>https://github.com/optical/FlickElectricSharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>FlickElectric;Flick Electric Api;API;Flick API</PackageTags>
+    <Version>0.1.0</Version>
+    <Copyright>Jared Klopper</Copyright>
   </PropertyGroup>
 
 

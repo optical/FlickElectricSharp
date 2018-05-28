@@ -1,9 +1,12 @@
-# FlickElectricSharp [![Build Status](https://travis-ci.org/optical/FlickElectricSharp.svg?branch=master)](https://travis-ci.org/optical/FlickElectricSharp) [![Build status](https://ci.appveyor.com/api/projects/status/9x0eoknwn9tywgua?svg=true)](https://ci.appveyor.com/project/optical/flickelectricsharp)
+# FlickElectricSharp [![Build Status](https://travis-ci.org/optical/FlickElectricSharp.svg?branch=master)](https://travis-ci.org/optical/FlickElectricSharp) [![Build status](https://ci.appveyor.com/api/projects/status/9x0eoknwn9tywgua?svg=true)](https://ci.appveyor.com/project/optical/flickelectricsharp) [![NuGet Package](https://img.shields.io/nuget/v/FlickElectricSharp.svg)](https://www.nuget.org/packages/FlickElectricSharp/)
 
-A simple, unofficial .NET client for accessing current [FlickElectric]("https://flickelectric.co.nz) prices, along with historic data
+A simple, unofficial .NET client for accessing current [FlickElectric](https://flickelectric.co.nz) prices, along with historic data
 
 ## Installation
-Nuget package, coming soon
+Available on [Nuget](https://www.nuget.org/packages/FlickElectricSharp/)
+```
+Install-Package FlickElectricSharp -Version 0.1.0
+```
 
 ## Usage
 There are 2 main classes for accessing the Flick API's. One corresponds to their web api for exporting historic usage data, while the other uses their Android APP api to poll for current and predicted future pricing.
