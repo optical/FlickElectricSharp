@@ -27,7 +27,7 @@
     <RepositoryUrl>https://github.com/optical/FlickElectricSharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>FlickElectric;Flick Electric Api;API;Flick API</PackageTags>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Copyright>Jared Klopper</Copyright>
   </PropertyGroup>
 
