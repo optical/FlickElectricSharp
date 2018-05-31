@@ -19,7 +19,7 @@
   </PropertyGroup>
 
  <PropertyGroup Label="Package">
-    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionPrefix>0.2.0</VersionPrefix>
     <Authors>Jared Klopper</Authors>
     <Product>FlickElectricSharp</Product>
     <Description>Provides access to Flicks API for current pricing and historic power usage</Description>
