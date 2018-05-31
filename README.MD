@@ -42,6 +42,7 @@ Provides access to your historic usage data, via the flick website.
 ```
 var client = new FlickWebClient("username", "password");
 
+// Historic usage only, no pricing
 var powerUsageData = await client.GetPowerUsage(DateTime.Now - Timespan.FromDays(7), DateTime.Now - TimeSpan.FromDays(1));
 
 foreach (var bucket in powerUsageData) {
@@ -54,8 +55,14 @@ foreach (var bucket in powerUsageData) {
 	Console.WriteLine($"UnitCode: {bucket.UnitCode");
 	Console.WriteLine($"Status: {bucket.Status");
 }
+
+var pricesAndUsage = await client.FetchDetailedUsageForDay(DateTime.Now.AddDays(-3));
+foreach (var usageBucket in pricesAndUsage) {
+	Console.WriteLine($"Between {usageBucket.Start}-{usageBucket.End} the price of power was {usageBucket.Price} and you used {usageBucket.Units}kWh");
+}
+
 ```
 
 ## Disclaimer
-Access to this data is via Flicks public API's used by its Android App and Website. They're likely to break whenever a significant update is made by Flick.
+Access to this data is via Flicks public API's used by its Android App and Website. They're likely to break whenever a significant update is made by Flick. This library rough around the edges and not production ready, but you may find it useful for hobbyist projects
 

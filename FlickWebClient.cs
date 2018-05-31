@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using CsvHelper;
@@ -89,6 +90,62 @@ namespace FlickElectricSharp {
 			}
 
 			return powerUsageBuckets;
+		}
+
+		public async Task<IList<PowerAndPriceInterval>> FetchDetailedUsageForDay(DateTime queryDateTime) {
+			await AuthGuard().ConfigureAwait(false);
+
+			var url = $"https://myflick.flickelectric.co.nz/dashboard/day/{queryDateTime:yyyy-MM-dd}";
+			var response = await _httpClient.GetAsync(url).ConfigureAwait(false);
+			response.EnsureSuccessStatusCode();
+			var rawPage = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+			var doc = new HtmlDocument();
+			doc.LoadHtml(rawPage);
+
+			// Crude error check, since it returns a 200 OK even when things go bad
+			if (rawPage.Contains("please select another day")) {
+				throw new FlickElectricException("There is an issue with the page being returned. Either data is not available for the day, or something else went wrong", response);
+			}
+
+			var dateNavigator = doc.GetElementbyId("date-navigation-calendar").InnerHtml.Trim();
+			if (DateTime.Parse(dateNavigator).Date != queryDateTime.Date) {
+				throw new FlickElectricException($"Got data back for an incorrect date. Got {dateNavigator}, but was expecting for {queryDateTime.Date}", response);
+			}
+
+			var rows = doc.GetElementbyId("day-table").Descendants("tbody").Single().Descendants("tr").ToList();
+
+			var unitsRegex = new Regex(@"^(?<units>\d+.\d+) units$");
+			var priceRegex = new Regex(@"^(?<price>\d+.\d+)¢$");
+			var intervalRegex = new Regex(@"(?<start>\d+:\d+) to (?<end>\d+:\d+)");
+
+			// should be 48 intervals in a day
+			var result = new List<PowerAndPriceInterval>(48);
+			foreach (var rowNode in rows) {
+				var price = double.Parse(
+					rowNode.Descendants("td")
+					.Select(node => priceRegex.Match(node.InnerHtml))
+					.Single(match => match.Success)
+					.Groups["price"].Value);
+
+				var units = double.Parse(
+					rowNode.Descendants("td")
+					.Select(node => unitsRegex.Match(node.InnerHtml))
+					.Single(match => match.Success)
+					.Groups["units"].Value);
+
+
+				var intervalMatch = intervalRegex.Match(rowNode.Descendants("th").Single().InnerHtml);
+				if (!intervalMatch.Success) {
+					throw new FlickElectricException("Unable to find interval in resulting page. Flick may have changed their page layout", response);
+				}
+
+				var startTime = TimeSpan.Parse(intervalMatch.Groups["start"].Value);
+				var endTime = TimeSpan.Parse(intervalMatch.Groups["end"].Value);
+
+				result.Add(new PowerAndPriceInterval(queryDateTime.Date + startTime, queryDateTime.Date + endTime, price, units));
+			}
+
+			return result;
 		}
 	}
 }
