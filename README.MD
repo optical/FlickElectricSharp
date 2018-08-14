@@ -5,7 +5,7 @@ A simple, unofficial .NET client for accessing current [FlickElectric](https://f
 ## Installation
 Available on [Nuget](https://www.nuget.org/packages/FlickElectricSharp/)
 ```
-Install-Package FlickElectricSharp -Version 0.1.0
+Install-Package FlickElectricSharp -Version 0.2.0
 ```
 
 ## Usage
